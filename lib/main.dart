@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 
 void main() {
-  runApp(  const MaterialApp(
+  runApp(  MaterialApp(
     debugShowCheckedModeBanner: false,
-    home:  Scaffold(
+    home:  const Scaffold(
       backgroundColor: Colors.white,
       // appBar: AppBar(
       //   title: Text('Krishi Mitra'),
