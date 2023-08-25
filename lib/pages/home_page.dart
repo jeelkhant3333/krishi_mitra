@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -10,174 +10,169 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Widget> productIconsButton =[
 
-   ItemIconButton(Icons.person,'Cotton'),
-    ItemIconButton(Icons.person,' '),
-    ItemIconButton(Icons.person,'Product Name'),
-    ItemIconButton(Icons.person,'Product Name'),
-    ItemIconButton(Icons.person,'Product Name'),
-    ItemIconButton(Icons.person,'Product Name'),
-    ItemIconButton(Icons.person,'Product Name'),
+    ItemIconButton(Icons.person,'Cotton'),
+    // ItemIconButton(Icons.person,' '),
+    // ItemIconButton(Icons.person,'Pxyz'),
+    // ItemIconButton(Icons.person,'Product Name'),
+    // ItemIconButton(Icons.person,'Product Name'),
+    // ItemIconButton(Icons.person,'Product Name'),
+    // ItemIconButton(Icons.person,'Product Name'),
   ];
+
   List<Widget> productCard = [
     const iteamCard('Cotton' , '900' ),
     const iteamCard('weat', '500'),
-    const iteamCard('groundnut', '1500'),
-    const iteamCard('soyabin', '1500'),
+    // const iteamCard('groundnut', '1500'),
+    // const iteamCard('soyabin', '1500'),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-
-        ],
         title: const Text('Krishi Mitra'),
         backgroundColor: const Color(0xFF79B854),
       ),
-      backgroundColor: Colors.white,
-      body: ListView(
-        scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-        children: [
-          SizedBox(
-            height: double.maxFinite,
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 20,left: 10,right: 10),
-                  child: Text(
-                    'Welcome To Krushi Mitra',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.green,
-                    ),
-                    textAlign: TextAlign.center,
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height/0.5,
+          width: double.infinity,
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 20,left: 10,right: 10),
+                child: Text(
+                  'Welcome To Krushi Mitra',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.green,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 16),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        hintText: 'Search product',
-                        prefixIcon: const Icon(Icons.search),
-                        prefixIconColor: const Color(0xFF79B854),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF79B854),
-                            width: 2,
-                          ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16,right: 16),
+                child: TextField(
+                  decoration: InputDecoration(
+                      hintText: 'Search product',
+                      prefixIcon: const Icon(Icons.search),
+                      prefixIconColor: const Color(0xFF79B854),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF79B854),
+                          width: 2,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF79B854),
-                            width: 2,
-                          ),
-                        )),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(
+                          color: Color(0xFF79B854),
+                          width: 2,
+                        ),
+                      )),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.lightGreen,
+                      foregroundColor: Colors.white,
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      'Buy',
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  const SizedBox(
+                    width: 50,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: OutlinedButton.styleFrom(
+                      backgroundColor: Colors.lightGreen,
+                      foregroundColor: Colors.white,
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      'Sell',
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children: [
+                      ...productIconsButton.map((e) => productIconsButton[0]),
+                    ]),
+              ),
+              const SizedBox(height: 30,),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.lightGreen,
-                        foregroundColor: Colors.white,
-                        elevation: 5,
-                      ),
-                      child: const Text(
-                        'Buy',
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...productCard.map((e) => productCard[0]),
+                          ],),
                       ),
                     ),
-                    const SizedBox(
-                      width: 50,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.lightGreen,
-                        foregroundColor: Colors.white,
-                        elevation: 5,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...productCard.map((e) => productCard[1]),
+                          ],),
                       ),
-                      child: const Text(
-                        'Sell',
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...productCard.map((e) => productCard[0]),
+                          ],),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...productCard.map((e) => productCard[0]),
+                            ItemIconButton(Icons.arrow_forward,'View more'),
+                          ],),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                      children: [
-                        ...productIconsButton.map((e) => productIconsButton[0]),
-                      ]),
-                ),
-                const SizedBox(height: 30,),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...productCard.map((e) => productCard[0]),
-                            ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...productCard.map((e) => productCard[1]),
-                            ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...productCard.map((e) => productCard[2]),
-                            ],),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              ...productCard.map((e) => productCard[3]),
-                              ItemIconButton(Icons.arrow_forward,'View more'),
-                            ],),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
-        ],
-
+        ),
       ),
     );
   }
@@ -254,9 +249,13 @@ class ItemIconButton extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 9,),
-           Text(
-           text,
+           SizedBox(
+             width: 50,
+             child: Text(
+             text,
+               textAlign: TextAlign.center,
           ),
+           ),
         ],
       ),
     );

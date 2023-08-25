@@ -60,9 +60,8 @@ class LoginPage extends StatelessWidget {
                     ElevatedButton.icon(
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const HomePage();
-                        }));
+                            MaterialPageRoute(builder: (context) => HomePage()
+                        ));
                       },
                       icon: const Icon(Icons.arrow_forward),
                       label: const Text('Login'),
