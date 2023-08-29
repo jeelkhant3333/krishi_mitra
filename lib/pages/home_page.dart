@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import '../models/item_card.dart';
+import '../pages/buy_page.dart';
 
 class HomePage extends StatelessWidget {
-  final List<String> productList =
-  ['Cotton', 'Wheat', 'Groundnut', 'Soybean',];
-  final List<String> suggestionProductList =
-  ['Cotton', 'Wheat', 'Groundnut', 'Soybean','Jeera','Onion'];
+  final List<List<String>> productList = [
+    ['cotton', '900', '1000'],
+    ['wheat', '500', '300'],
+    ['peanuts', '2000', '100000'],
+  ];
+  // ['Cotton', 'Wheat', 'Groundnut', 'Soybean',];
+  final List<String> suggestedProductList = [
+    'cotton',
+    'wheat',
+    'peanuts',
+  ];
 
- HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +46,10 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => BuyPage()));
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.lightGreen,
@@ -60,16 +72,18 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 30),
             productIcons(),
             const SizedBox(height: 30),
-            productCardRows(),
+            productCardRow(),
           ],
         ),
       ),
     );
   }
+
   Widget searchbar() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
+        cursorColor: const Color(0xFF79B854),
         decoration: InputDecoration(
           hintText: 'Search product',
           prefixIcon: const Icon(Icons.search, color: Color(0xFF79B854)),
@@ -85,34 +99,68 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
   Widget productIcons() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (String product in suggestionProductList)
-            ItemIconRoundedButton(Icons.person, product , (){}),
+          for (String product in suggestedProductList)
+            ItemIconRoundedButton(
+                Image(
+                  image: AssetImage('images/productIcons/$product.png'),
+                  fit: BoxFit.fill,
+                ),
+                product,
+                () {}),
         ],
       ),
     );
   }
 
-  Widget productCardRows() {
+  Widget productCardRow() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        for (String product in productList)
+        for (var product in productList)
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ItemCard(itemName: product, itemPrice: '900'),
-                  ItemCard(itemName: product, itemPrice: '900'),
-                  ItemCard(itemName: product, itemPrice: '900'),
-                  ItemCard(itemName: product, itemPrice: '900'),
-                   ItemIconRoundedButton(Icons.arrow_forward, 'View more', (){}),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemCard(
+                    itemName: product[0],
+                    itemPrice: product[1],
+                    itemStock: product[2],
+                  ),
+                  ItemIconRoundedButton(
+                      const Icon(Icons.arrow_forward), 'View more', () {}),
                 ],
               ),
             ),
@@ -122,57 +170,12 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class ItemCard extends StatelessWidget {
-  const ItemCard({super.key, required this.itemName, required this.itemPrice});
-
-  final String itemName;
-  final String itemPrice;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.grey[100],
-        ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 110,
-              width: 150,
-              child: Image(image: AssetImage('images/logo.png')),
-            ),
-            Text(
-              itemName,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                '$itemPrice/20Kg',
-                style: const TextStyle(
-                  fontSize: 15,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class ItemIconRoundedButton extends StatelessWidget {
-  const ItemIconRoundedButton(this.icon, this.text , this.onPress, {super.key});
+  const ItemIconRoundedButton(this.child, this.text, this.onPress, {super.key});
 
-  final IconData? icon;
   final String text;
   final void Function() onPress;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +197,7 @@ class ItemIconRoundedButton extends StatelessWidget {
                 ),
                 elevation: 5,
               ),
-              child: Icon(icon),
+              child: child,
             ),
           ),
           const SizedBox(height: 9),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'home_page.dart';
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -31,6 +33,7 @@ class LoginPage extends StatelessWidget {
                       height: 30,
                     ),
                     TextField(
+                        cursorColor:  Color(0xFF79B854),
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           hintText: 'Phone Number',
