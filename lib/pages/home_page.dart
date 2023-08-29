@@ -23,6 +23,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Krishi Mitra'),
         backgroundColor: const Color(0xFF79B854),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Icon(Icons.person,color:  Colors.white,),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -48,7 +54,7 @@ class HomePage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => BuyPage()));
+                        MaterialPageRoute(builder: (context) => const BuyPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -133,32 +139,39 @@ class HomePage extends StatelessWidget {
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
                   ItemCard(
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
                   ItemCard(
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
                   ItemCard(
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
                   ItemCard(
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
                   ItemCard(
                     itemName: product[0],
                     itemPrice: product[1],
                     itemStock: product[2],
+                    onPress: (){},
                   ),
+
                   ItemIconRoundedButton(
                       const Icon(Icons.arrow_forward), 'View more', () {}),
                 ],
