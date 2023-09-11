@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.grey[300],
+            color: Colors.grey[200],
           ),
           child: Column(
             children: [
@@ -32,7 +32,7 @@ class ItemCard extends StatelessWidget {
                   topRight: Radius.circular(15),
                 ),
                 child: SizedBox(
-                  height: 150,
+                  height: 130,
                   width: 200,
                   child: Image(
                       image: AssetImage('images/productImages/$itemName.png'),

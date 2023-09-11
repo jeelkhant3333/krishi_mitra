@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:krishi_mitra/pages/sell_page.dart';
 import '../models/item_card.dart';
 import '../pages/buy_page.dart';
 
@@ -8,11 +9,17 @@ class HomePage extends StatelessWidget {
     ['wheat', '500', '300'],
     ['peanuts', '2000', '100000'],
   ];
-  // ['Cotton', 'Wheat', 'Groundnut', 'Soybean',];
+
   final List<String> suggestedProductList = [
     'cotton',
     'wheat',
     'peanuts',
+    'jeera',
+    'maize',
+    'maize',
+    'maize',
+    'maize',
+    'maize',
   ];
 
   HomePage({super.key});
@@ -24,8 +31,8 @@ class HomePage extends StatelessWidget {
         title: const Text('Krishi Mitra'),
         backgroundColor: const Color(0xFF79B854),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(10),
+          const Padding(
+            padding: EdgeInsets.all(10),
             child: Icon(Icons.person,color:  Colors.white,),
           ),
         ],
@@ -65,7 +72,10 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(width: 50),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const SellPage()));
+                  },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.lightGreen,
@@ -113,8 +123,8 @@ class HomePage extends StatelessWidget {
         children: [
           for (String product in suggestedProductList)
             ItemIconRoundedButton(
-                Image(
-                  image: AssetImage('images/productIcons/$product.png'),
+                const Image(
+                  image: AssetImage('images/productIcons/cotton.png'),
                   fit: BoxFit.fill,
                 ),
                 product,
@@ -130,7 +140,7 @@ class HomePage extends StatelessWidget {
       children: [
         for (var product in productList)
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 10 , bottom: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
