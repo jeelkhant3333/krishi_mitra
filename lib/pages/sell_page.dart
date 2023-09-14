@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class SellPage extends StatefulWidget {
   const SellPage({super.key});
 
@@ -170,7 +169,11 @@ class ProductForm extends StatelessWidget {
                       fontSize: 10,
                       color: Colors.grey,
                     ),
-                  )),
+                  ),
+                onChanged: (value){
+
+                },
+              ),
             ),
           ),
         ],

@@ -8,9 +8,9 @@ class ItemCard extends StatelessWidget {
         required this.itemStock,
         required this.onPress});
 
-  final String itemName;
-  final String itemPrice;
-  final String itemStock;
+  final String? itemName;
+  final String? itemPrice;
+  final String? itemStock;
   final void Function() onPress;
 
   @override
@@ -42,7 +42,7 @@ class ItemCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  itemName,
+                  itemName!,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

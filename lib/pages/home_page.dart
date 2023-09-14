@@ -4,22 +4,16 @@ import '../models/item_card.dart';
 import '../pages/buy_page.dart';
 
 class HomePage extends StatelessWidget {
-  final List<List<String>> productList = [
-    ['cotton', '900', '1000'],
-    ['wheat', '500', '300'],
-    ['peanuts', '2000', '100000'],
+  final List<Map<String, String>> productList = [
+    {'name': 'cotton', 'price': '900', 'stock': '1000'},
+    {'name': 'wheat', 'price': '500', 'stock': '300'},
+    {'name': 'peanuts', 'price': '2000', 'stock': '100000'},
   ];
 
   final List<String> suggestedProductList = [
     'cotton',
     'wheat',
     'peanuts',
-    'jeera',
-    'maize',
-    'maize',
-    'maize',
-    'maize',
-    'maize',
   ];
 
   HomePage({super.key});
@@ -30,10 +24,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Krishi Mitra'),
         backgroundColor: const Color(0xFF79B854),
-        actions: [
-          const Padding(
+        actions: const [
+          Padding(
             padding: EdgeInsets.all(10),
-            child: Icon(Icons.person,color:  Colors.white,),
+            child: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
@@ -60,8 +57,10 @@ class HomePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const BuyPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BuyPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -73,8 +72,10 @@ class HomePage extends StatelessWidget {
                 const SizedBox(width: 50),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const SellPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SellPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -123,8 +124,8 @@ class HomePage extends StatelessWidget {
         children: [
           for (String product in suggestedProductList)
             ItemIconRoundedButton(
-                const Image(
-                  image: AssetImage('images/productIcons/cotton.png'),
+                Image(
+                  image: AssetImage('images/productIcons/$product.png'),
                   fit: BoxFit.fill,
                 ),
                 product,
@@ -140,48 +141,29 @@ class HomePage extends StatelessWidget {
       children: [
         for (var product in productList)
           Padding(
-            padding: const EdgeInsets.only(top: 10 , bottom: 10),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
+                    itemName: product['name'],
+                    itemPrice: product['price'],
+                    itemStock: product['stock'],
+                    onPress: () {},
                   ),
                   ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
+                    itemName: product['name'],
+                    itemPrice: product['price'],
+                    itemStock: product['stock'],
+                    onPress: () {},
                   ),
                   ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
+                    itemName: product['name'],
+                    itemPrice: product['price'],
+                    itemStock: product['stock'],
+                    onPress: () {},
                   ),
-                  ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
-                  ),
-                  ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
-                  ),
-                  ItemCard(
-                    itemName: product[0],
-                    itemPrice: product[1],
-                    itemStock: product[2],
-                    onPress: (){},
-                  ),
-
                   ItemIconRoundedButton(
                       const Icon(Icons.arrow_forward), 'View more', () {}),
                 ],
