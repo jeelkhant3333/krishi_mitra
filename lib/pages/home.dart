@@ -3,7 +3,15 @@ import 'package:krishi_mitra/pages/sell_page.dart';
 import '../models/item_card.dart';
 import '../pages/buy_page.dart';
 
-class HomePage extends StatelessWidget {
+class Home extends StatefulWidget {
+
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final List<Map<String, String>> productList = [
     {'name': 'cotton', 'price': '900', 'stock': '1000'},
     {'name': 'wheat', 'price': '500', 'stock': '300'},
@@ -16,81 +24,80 @@ class HomePage extends StatelessWidget {
     'peanuts',
   ];
 
-  HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Krishi Mitra'),
-        backgroundColor: const Color(0xFF79B854),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(10),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          backgroundColor:  const Color(0xFF79B854),
+          leading: const Padding(
+            padding: EdgeInsets.only(left: 16.0),
             child: Icon(
-              Icons.person,
+                Icons.person,
               color: Colors.white,
             ),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                'Welcome To Krushi Mitra',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30,
-                  color: Colors.green,
-                ),
-                textAlign: TextAlign.center,
-              ),
+          title: const Text('Krushi Mitra'),
+          titleTextStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+            color: Colors.white,
+          ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 16.0),
+              child: Icon(Icons.search, color: Colors.white,),
             ),
-            searchbar(),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BuyPage()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.lightGreen,
-                    elevation: 5,
-                  ),
-                  child: const Text('Buy'),
-                ),
-                const SizedBox(width: 50),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SellPage()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.lightGreen,
-                    elevation: 5,
-                  ),
-                  child: const Text('Sell'),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            productIcons(),
-            const SizedBox(height: 30),
-            productCardRow(),
           ],
+        ),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BuyPage()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.lightGreen,
+                      elevation: 5,
+                    ),
+                    child: const Text('Buy'),
+                  ),
+                  const SizedBox(width: 50),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SellPage()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.lightGreen,
+                      elevation: 5,
+                    ),
+                    child: const Text('Sell'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
+              productIcons(),
+              const SizedBox(height: 30),
+              productCardRow(),
+            ],
+          ),
         ),
       ),
     );

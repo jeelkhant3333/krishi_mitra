@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/home_page.dart';
+import '../pages/home.dart';
 
 class BuyPage extends StatefulWidget {
   const BuyPage({super.key});
@@ -9,7 +9,7 @@ class BuyPage extends StatefulWidget {
 }
 
 class _BuyPageState extends State<BuyPage> {
-  HomePage homePage = HomePage();
+  Home homePage = const Home();
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class _BuyPageState extends State<BuyPage> {
         title: const Text('Krishi Mitra'),
         backgroundColor: const Color(0xFF79B854),
       ),
-      body:  SafeArea(
+      body:  const SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              const SizedBox(height: 30),
-              homePage.productIcons(),
-              const SizedBox(height: 30),
-              homePage.productCardRow(),
+              SizedBox(height: 30),
+              // homePage.productIcons(),
+              SizedBox(height: 30),
+              // homePage.productCardRow(),
             ],
           )
         ),
