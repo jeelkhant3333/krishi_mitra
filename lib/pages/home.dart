@@ -12,10 +12,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<Map<String, String>> productList = [
-    {'name': 'cotton', 'price': '900', 'stock': '1000'},
-    {'name': 'wheat', 'price': '500', 'stock': '300'},
-    {'name': 'peanuts', 'price': '2000', 'stock': '100000'},
+  final List<Map<String, dynamic>> productList = [
+    {'name': 'cotton', 'price': 900, 'stock': 1000},
+    {'name': 'wheat', 'price': 500, 'stock': 500},
+    {'name': 'peanuts', 'price': 2000, 'stock': 188},
   ];
 
   final List<String> suggestedProductList = [
@@ -56,7 +56,6 @@ class _HomeState extends State<Home> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-
               const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -92,10 +91,22 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(height: 30),
-              productIcons(),
-              const SizedBox(height: 30),
-              productCardRow(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16),
+                    child: Text("Suggestions",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  productCardRow(),
+                ],
+              ),
             ],
           ),
         ),
@@ -124,53 +135,19 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget productIcons() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          for (String product in suggestedProductList)
-            ItemIconRoundedButton(
-                Image(
-                  image: AssetImage('images/productIcons/$product.png'),
-                  fit: BoxFit.fill,
-                ),
-                product,
-                () {}),
-        ],
-      ),
-    );
-  }
-
   Widget productCardRow() {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (var product in productList)
           Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            padding: const EdgeInsets.only(bottom: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  ItemCard(
-                    itemName: product['name'],
-                    itemPrice: product['price'],
-                    itemStock: product['stock'],
-                    onPress: () {},
-                  ),
-                  ItemCard(
-                    itemName: product['name'],
-                    itemPrice: product['price'],
-                    itemStock: product['stock'],
-                    onPress: () {},
-                  ),
-                  ItemCard(
-                    itemName: product['name'],
-                    itemPrice: product['price'],
-                    itemStock: product['stock'],
-                    onPress: () {},
-                  ),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
                   ItemIconRoundedButton(
                       const Icon(Icons.arrow_forward), 'View more', () {}),
                 ],
