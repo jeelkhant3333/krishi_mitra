@@ -6,6 +6,8 @@ class CustomContainer extends StatelessWidget {
   final int stock;
   final int price;
   final void onTap;
+  final String location;
+  final String contact;
 
   const CustomContainer(
       {super.key,
@@ -13,7 +15,9 @@ class CustomContainer extends StatelessWidget {
       required this.imageUrl,
       required this.price,
       required this.stock,
-      required this.onTap});
+      required this.onTap,
+        required this.location,
+        required this.contact});
 
   @override
   Widget build(BuildContext context) {

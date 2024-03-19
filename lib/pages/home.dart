@@ -145,9 +145,9 @@ class _HomeState extends State<Home> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
-                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
-                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){}),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){},contact: "9876543210",location: "Vadodara",),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){},contact: "9876543210",location: "Vadodara",),
+                 CustomContainer(title: product["name"]!, imageUrl: "", price: product["price"], stock: product["stock"], onTap: (){},contact: "9876543210",location: "Vadodara",),
                   ItemIconRoundedButton(
                       const Icon(Icons.arrow_forward), 'View more', () {}),
                 ],

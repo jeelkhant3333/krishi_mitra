@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SellPage extends StatefulWidget {
   const SellPage({super.key});
 
@@ -7,55 +8,69 @@ class SellPage extends StatefulWidget {
 }
 
 class _SellPageState extends State<SellPage> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController priceController =TextEditingController();
+  TextEditingController stockController =TextEditingController();
+  TextEditingController locationController =TextEditingController();
+  TextEditingController contactController =TextEditingController();
+
+
   List<String> l = <String>["cotton", "groundnut", "maize", "castor"];
   String dropdownValue = 'cotton';
+
+  void submitForm() {
+    if (formKey.currentState?.validate() ?? false) {
+      // signIn();
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Krishi Mitra'),
-        backgroundColor: const Color(0xFF79B854),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Row(
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor:  const Color(0xFF79B854),
+          leading:  Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: IconButton(
+              color: Colors.white,
+              onPressed: () { Navigator.of(context).pop(); }, icon: const Icon(Icons.arrow_back,),
+      
+            ),
+          ),
+          title: const Text('Sell Your Products'),
+          titleTextStyle: const TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0 , vertical: 100),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          width: 80,
-                          child: Text(
-                            'Select product :',
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 30),
+                      const Text("Select Product: ",style: TextStyle(fontSize: 17),),
+                      const SizedBox(width: 16),
                       DropdownButton<String>(
                         iconEnabledColor: Colors.lightGreen,
                         iconDisabledColor: Colors.lightGreen,
                         value: dropdownValue,
                         icon: const Icon(
                           Icons.arrow_drop_down,
-                          size: 40,
+                          size: 20,
                         ),
-                        elevation: 10,
                         style: const TextStyle(
-                          fontSize: 25,
-                          color: Colors.lightGreen,
+                          fontSize: 15,
+                          color: Colors.black,
                         ),
                         onChanged: (String? value) {
-                          // This is called when the user selects an item.
                           setState(() {
                             dropdownValue = value!;
                           });
@@ -69,51 +84,180 @@ class _SellPageState extends State<SellPage> {
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Column(
-                  children: [
-                    ProductForm(
-                      text: '  Price :    ',
-                      suffixText: '/20Kg',
-                      hintText: 'Enter Estimated price',
-                    ),
-                    SizedBox(height: 50),
-                    ProductForm(
-                      text: 'Quantity :',
-                      suffixText: 'Kg',
-                      hintText: 'Enter total quantity in kg',
-                    ),
-                    SizedBox(height: 50),
-                    ProductForm(
-                      text: 'Contact : ',
-                      suffixText: '',
-                      hintText: 'Your Contact Number',
-                    ),
-                    SizedBox(height: 50),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.lightGreen,
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  Form(
+                    key: formKey,
+                    child: Column(children: [
+                      TextFormField(
+                        cursorColor: const Color(0xFF79B854),
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        controller: priceController,
+                        decoration: const InputDecoration(
+                          hintText: "Enter price par 20Kg",
+                            labelText: "Price",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            helperStyle: TextStyle(fontWeight: FontWeight.w100),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.black54,
+                                ))),
                       ),
-                    ),
-                    child: const Text(
-                      'Sell',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                    ),
+                      const SizedBox(height: 16,),
+                      TextFormField(
+                        cursorColor: const Color(0xFF79B854),
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        controller: stockController,
+                        decoration: const InputDecoration(
+                          hintText: "Enter stock in Kg",
+                            labelText: "Stock",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            helperStyle: TextStyle(fontWeight: FontWeight.w100),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.black54,
+                                ))),
+                      ),
+                      const SizedBox(height: 16,),
+                      TextFormField(
+                        cursorColor: const Color(0xFF79B854),
+                        controller: locationController,
+                        textInputAction: TextInputAction.next,
+                        decoration: const InputDecoration(
+                            hintText: "Enter location",
+                            labelText: "Location",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            helperStyle: TextStyle(fontWeight: FontWeight.w100),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.black54,
+                                ))),
+                      ),
+                      const SizedBox(height: 16,),
+                      TextFormField(
+                        cursorColor: const Color(0xFF79B854),
+                        controller: contactController,
+                       keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                            hintText: "Enter contact number",
+                            labelText: "Contact Number",
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            helperStyle: TextStyle(fontWeight: FontWeight.w100),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.black54,
+                                ))),
+                      ),
+                      const SizedBox(height: 16,),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                            const Color(0xFF79B854),
+                          ),
+                        ),
+                        onPressed: () {
+                          submitForm();
+                          // Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> Home()));
+                        },
+                        child: Container(
+                          height: h * 0.0585,
+                          width: w * 0.872,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "Sell",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16,),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                            Colors.white
+                          ),
+                        ),
+                        onPressed: () {
+                          priceController.clear();
+                          stockController.clear();
+                          locationController.clear();
+                          contactController.clear();
+                        },
+                        child: Container(
+                          height: h * 0.0585,
+                          width: w * 0.872,
+                          alignment: Alignment.center,
+                          child: const Text(
+                            "Clear",
+                            style: TextStyle(
+                              color: Color(0xFF79B854),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -134,50 +278,36 @@ class ProductForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              text,
-              style: const TextStyle(
-                fontSize: 20,
+    return Expanded(
+      child: Form(
+        // key: formKey1,
+        child: TextField(
+          textInputAction: TextInputAction.next,
+          cursorColor: Colors.green,
+          keyboardType: TextInputType.number,
+          style: const TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.green,
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: TextField(
-                  textInputAction: TextInputAction.next,
-                  cursorColor: Colors.green,
-                  keyboardType: TextInputType.number,
-                  style: const TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                      ),
-                    ),
-                    suffixText: suffixText,
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: hintText,
-                    hintStyle: const TextStyle(
-                      fontSize: 10,
-                      color: Colors.grey,
-                    ),
-                  ),
-                onChanged: (value){
-
-                },
-              ),
+            suffixText: suffixText,
+            filled: true,
+            fillColor: Colors.white,
+            hintText: hintText,
+            hintStyle: const TextStyle(
+              fontSize: 10,
+              color: Colors.grey,
             ),
           ),
-        ],
+          onChanged: (value) {},
+        ),
       ),
     );
   }
 }
+
+
+
+// validators, sufixtesxt , max len 

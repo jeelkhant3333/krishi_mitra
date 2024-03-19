@@ -45,50 +45,6 @@ class _LoginState extends State<Login> {
     }
   }
 
-  // Future<void> signIn() async {
-  //   try {
-  //     if (mounted) {
-  //       http.Response response = await http.post(
-  //         Uri.parse('https://neartravel.teleferti.com/api/login'),
-  //         body: jsonEncode({
-  //           "email": emailController.text,
-  //           "password": passwordController.text,
-  //         }),
-  //       );
-  //       // print('request posted');
-  //
-  //       if (mounted) {
-  //         if (response.statusCode == 201) {
-  //           // print('response = ${response.body}');
-  //           var resData = jsonDecode(response.body);
-  //           var myToken = resData['token'];
-  //           // print('token = $myToken');
-  //           preferences.setString('token', myToken);
-  //           Navigator.pushNamed(context, 'home');
-  //         } else {
-  //           // print(response.statusCode);
-  //           ScaffoldMessenger.of(context).showSnackBar(
-  //             const SnackBar(
-  //               content: Text("Something went wrong!"),
-  //               duration: Duration(seconds: 3),
-  //             ),
-  //           );
-  //         }
-  //       }
-  //     }
-  //   } catch (e) {
-  //     // print("catch $e");
-  //     if (mounted) {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(
-  //           content: Text("Something went wrong!"),
-  //           duration: Duration(seconds: 3),
-  //         ),
-  //       );
-  //     }
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
